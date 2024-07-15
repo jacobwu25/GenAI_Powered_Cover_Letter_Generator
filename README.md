@@ -29,7 +29,8 @@ An AI-powered tool that generates personalized cover letters based on user-provi
     ```sh
     pip install -r requirements.txt
     ```
-4. **Create a `.env` file in the root directory of your project**:
+4. **Set Up Environment Variables**:
+    - Create a `.env` file in the root directory of your project:
       ```sh
       touch .env
       ```
@@ -39,8 +40,6 @@ An AI-powered tool that generates personalized cover letters based on user-provi
       ```
 
     Replace `your_openai_api_key` with your actual OpenAI API key.
-    ```
-
 ## Usage
 1. **Run the application**:
     ```sh
