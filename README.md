@@ -29,6 +29,17 @@ An AI-powered tool that generates personalized cover letters based on user-provi
     ```sh
     pip install -r requirements.txt
     ```
+4. **Create a `.env` file in the root directory of your project**:
+      ```sh
+      touch .env
+      ```
+    - Open the `.env` file and add your OpenAI API key:
+      ```env
+      OPENAI_API_KEY=your_openai_api_key
+      ```
+
+    Replace `your_openai_api_key` with your actual OpenAI API key.
+    ```
 
 ## Usage
 1. **Run the application**:
