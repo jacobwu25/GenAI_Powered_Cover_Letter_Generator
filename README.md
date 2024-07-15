@@ -1,4 +1,4 @@
-# AI-Powered Cover Letter Generator
+# AI Powered Cover Letter Generator
 
 ## Project Description
 An AI-powered tool that generates personalized cover letters based on user-provided resume, LinkedIn profile URL, job description URL, and optional cover letter format.
@@ -11,37 +11,39 @@ An AI-powered tool that generates personalized cover letters based on user-provi
 - **PyPDFLoader:** PDF file handling
 - **docx:** DOCX file handling
 - **OpenAI GPT-4:** Language model for generating text
+- **Requests:** Library for making HTTP requests
+- **LangChain Community:** Additional models and utilities for LangChain
 
 ## Installation
-1. Clone the repository:
+1. **Clone the repository**:
     ```sh
     git clone https://github.com/jacobwu25/AI-Powered-Cover-Letter-Generator.git
     cd AI-Powered-Cover-Letter-Generator
     ```
-2. Create and activate a virtual environment:
+2. **Create and activate a virtual environment**:
     ```sh
     python -m venv venv
     source venv/bin/activate  # On Windows use `venv\Scripts\activate`
     ```
-3. Install the required packages:
+3. **Install the required packages**:
     ```sh
     pip install -r requirements.txt
     ```
 
 ## Usage
-1. Run the application:
+1. **Run the application**:
     ```sh
     python app.py
     ```
-2. Open the provided URL in your browser.
-3. Upload your resume, enter the LinkedIn profile URL, job description URL, and optionally upload a cover letter format.
-4. View the generated cover letter and messages.
+2. **Open the provided URL in your browser**.
+3. **Upload your resume**, enter the LinkedIn profile URL, job description URL, and optionally upload a cover letter format.
+4. **View the generated cover letter and messages**.
 
 ## High-Level Architecture
 
 ### Overview
 The system is composed of several key components:
-- **Input Handling:** Collects inputs from the user, including resume (PDF), LinkedIn profile URL, job description URL, and optional cover letter format (PDF or DOCX).
+- **Input Handling:** Collects inputs from the user, including resume (PDF), LinkedIn profile URL, job description URL, manual job description text, and optional cover letter format (PDF or DOCX).
 - **Processing:** Uses LangChain to manage sequential operations, including fetching data, text extraction, and generating the cover letter.
 - **Output Generation:** Displays the final cover letter and messages to the user via the Gradio interface.
 
@@ -50,22 +52,22 @@ The system is composed of several key components:
 ![Architecture Diagram](images/architecture-diagram.png)
 
 1. **Gradio Interface:**
-   - **File Inputs:** For uploading resume and cover letter format.
-   - **Textbox Inputs:** For LinkedIn profile URL, job description URL, and manual job description input.
-   - **Outputs:** Displays the final cover letter and messages.
+   - **Inputs:** Resume (PDF), LinkedIn profile URL, job description URL, manual job description text, optional cover letter format (PDF or DOCX)
+   - **Outputs:** Final cover letter, messages
 
 2. **Data Fetching and Text Extraction:**
-   - **BeautifulSoup:** For scraping job descriptions and LinkedIn profiles.
-   - **PyPDFLoader and docx:** For extracting text from uploaded PDF and DOCX files.
+   - **BeautifulSoup:** For scraping job descriptions and LinkedIn profiles
+   - **PyPDFLoader:** For extracting text from PDFs
+   - **docx:** For extracting text from DOCX files
 
 3. **LangChain Sequential Chain:**
-   - **LLM:** Uses OpenAI GPT-4o.
-   - **Prompt Templates:** Used to define specific tasks for each chain.
+   - **LLM:** Uses OpenAI GPT-4
+   - **Prompt Templates:** Used to define specific tasks for each chain
    - **Chains:**
-     - **Chain One:** Summarizes the job description (`job_summary`).
-     - **Chain Two:** Creates a personal profile based on the resume and LinkedIn profile (`personal_profile`).
-     - **Chain Three:** Composes a draft of the cover letter (`cover_letter_draft`).
-     - **Chain Four:** Proofreads and finalizes the cover letter (`cover_letter_final`).
+     - **Chain One:** Summarizes the job description (`job_summary`)
+     - **Chain Two:** Creates a personal profile based on the resume and LinkedIn profile (`personal_profile`)
+     - **Chain Three:** Composes a draft of the cover letter (`cover_letter_draft`)
+     - **Chain Four:** Proofreads and finalizes the cover letter (`cover_letter_final`)
 
 ### Chain of Thought
 1. **Chain One: Job Summary Generation**
