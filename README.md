@@ -15,8 +15,8 @@ An AI-powered tool that generates personalized cover letters based on user-provi
 ## Installation
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/cover-letter-generator.git
-    cd cover-letter-generator
+    git clone https://github.com/jacobwu25/AI-Powered-Cover-Letter-Generator.git
+    cd AI-Powered-Cover-Letter-Generator
     ```
 2. Create and activate a virtual environment:
     ```sh
