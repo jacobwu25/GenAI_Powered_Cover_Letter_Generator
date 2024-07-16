@@ -14,7 +14,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[2]:
+# In[39]:
 
 
 import os
@@ -29,26 +29,29 @@ if openai_api_key is None:
     raise ValueError("OpenAI API key not found in environment variables.")
 
 
-# In[3]:
+# In[42]:
 
 
-from langchain.chat_models import ChatOpenAI
+#from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
+#from langchain_community.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.chains import LLMChain
 from langchain.chains import SequentialChain
-from langchain.document_loaders import PyPDFLoader
+#from langchain.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyPDFLoader
 import docx
 from bs4 import BeautifulSoup
 
 
-# In[ ]:
+# In[43]:
 
 
 llm_model = "gpt-4o"
-llm = ChatOpenAI(temperature=0.0, model=llm_model)
+llm = ChatOpenAI(temperature=0.0, model=llm_model, openai_api_key=openai_api_key)
 
 
-# In[5]:
+# In[44]:
 
 
 #Define prompt template
@@ -65,7 +68,7 @@ prompt_job_description = ChatPromptTemplate.from_template(
 )
 
 
-# In[6]:
+# In[45]:
 
 
 prompt_profiler = ChatPromptTemplate.from_template(
@@ -84,7 +87,7 @@ prompt_profiler = ChatPromptTemplate.from_template(
 )
 
 
-# In[7]:
+# In[46]:
 
 
 prompt_cover_letter_composer = ChatPromptTemplate.from_template(
@@ -104,7 +107,7 @@ prompt_cover_letter_composer = ChatPromptTemplate.from_template(
 )
 
 
-# In[8]:
+# In[47]:
 
 
 prompt_proof_reader = ChatPromptTemplate.from_template(
@@ -121,7 +124,7 @@ prompt_proof_reader = ChatPromptTemplate.from_template(
 )
 
 
-# In[9]:
+# In[48]:
 
 
 #Define individual chain and chain of thoughts
@@ -129,6 +132,9 @@ chain_one = LLMChain(llm=llm, prompt=prompt_job_description, output_key="job_sum
 chain_two = LLMChain(llm=llm, prompt=prompt_profiler, output_key="personal_profile")
 chain_three = LLMChain(llm=llm, prompt=prompt_cover_letter_composer, output_key="cover_letter_draft")
 chain_four = LLMChain(llm=llm, prompt= prompt_proof_reader, output_key="cover_letter_final")
+
+
+
 #result = chain.run(input)
 sequential_chain = SequentialChain(
     chains=[chain_one, chain_two, chain_three, chain_four],
@@ -138,15 +144,20 @@ sequential_chain = SequentialChain(
 )
 
 
-# In[10]:
+# In[49]:
 
 
 # Function to extract text from PDF
 def extract_text_from_pdf(file):
-    loader = PyPDFLoader(file)
-    documents = loader.load()
-    text = " ".join([doc.page_content for doc in documents])
-    return text
+    try:
+        # Assuming 'file' is a file-like object
+        file_path = file.name
+        loader = PyPDFLoader(file_path)
+        text = loader.load()
+        return text
+    except Exception as e:
+        logging.error("Error extracting text from PDF", exc_info=True)
+        return str(e)
 
 # Function to extract text from DOCX
 def extract_text_from_docx(file):
@@ -185,7 +196,7 @@ def fetch_linkedin_profile(url):
         return None
 
 
-# In[11]:
+# In[50]:
 
 
 def cover_letter_gen(resume_file, linkedin_url, job_description_url, manual_job_description, cover_letter_file):
@@ -241,7 +252,7 @@ def cover_letter_gen(resume_file, linkedin_url, job_description_url, manual_job_
     return cover_letter_final, message
 
 
-# In[ ]:
+# In[51]:
 
 
 #Use Gradio to generate web UI
@@ -262,5 +273,11 @@ demo = gr.Interface(fn=cover_letter_gen,
                     description="Upload your resume, Linkedin profile, and job description URL to generate your customized cover letter"
                    )
 #demo.launch(share=True)
-demo.launch(share=True)
+demo.launch()
+
+
+# In[ ]:
+
+
+
 
