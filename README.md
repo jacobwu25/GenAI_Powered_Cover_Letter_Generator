@@ -1,15 +1,3 @@
----
-title: GenAI Powered Cover Letter Generator
-emoji: ✉️
-colorFrom: indigo
-colorTo: blue
-sdk: gradio
-sdk_version: "3.0"
-app_file: Cover_Letter_chain_github.py
-pinned: false
-license: mit
----
-
 # AI Powered Cover Letter Generator
 
 ## Project Description
