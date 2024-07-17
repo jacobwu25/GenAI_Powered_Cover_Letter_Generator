@@ -6,7 +6,24 @@ https://huggingface.co/spaces/jacobwu/GenAI_Powered_Cover_Letter_Generator
 ![tool_screen_shot](images/tool_screen_shot.jpg)
 
 ## Project Description
-An GenAI-powered tool that generates personalized cover letters based on user-provided resume, LinkedIn profile URL (Optional), job description URL, job description text (fallback when job description URL fails), and cover letter format (optional).
+This project generates tailored cover letters using GenAI. It requires specific inputs and processes them through several chains to produce a polished cover letter.
+
+## How It Works
+1. **Inputs**
+- **Candidate's Resume** (Required)
+- **LinkedIn Profile URL** (Optional)
+- **Job Description URL** (Required)
+- **Job Description Text** (Fallback when Job Description URL fails)
+- **Cover Letter Format** (Optional)
+
+2. **GenAI Processing**
+- **Extraction:** Each chain extracts relevant information from the job description and the candidate's personal profile.
+- **Composition:** The extracted data is composed into a well-written cover letter format.
+- **Proofreading:** The composed cover letter is proofread for quality assurance.
+
+3. **Outputs**
+- **Well-Polished Cover Letter**
+- **Error Message Box:** Describes any errors encountered (e.g., Job Description URL not working).
 
 ## Tech Stack
 - **Python:** Main programming language
