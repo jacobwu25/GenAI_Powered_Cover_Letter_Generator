@@ -43,7 +43,7 @@ An AI-powered tool that generates personalized cover letters based on user-provi
 ## Usage
 1. **Run the application**:
     ```sh
-    python app.py
+    Cover_Letter_chain_github.py
     ```
 2. **Open the provided URL in your browser**.
 3. **Upload your resume**, enter the LinkedIn profile URL, job description URL, and optionally upload a cover letter format.
