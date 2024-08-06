@@ -6,7 +6,7 @@ https://huggingface.co/spaces/jacobwu/GenAI_Powered_Cover_Letter_Generator
 ![tool_screen_shot](images/tool_screen_shot.jpg)
 
 ## Project Description
-This project generates tailored cover letters using GenAI. It requires specific inputs and processes them through several chains to produce a polished cover letter.
+This project generates tailored cover letters using GenAI, showcasing my understanding of generative AI and ability to prototype product ideas. It requires specific inputs and processes them through several chains to produce a polished cover letter. 
 
 ## How It Works
 1. **Inputs**
